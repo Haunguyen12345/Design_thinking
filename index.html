@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm Kiếm Việc Làm</title>
+    <!-- Google Fonts: Inter cho font chữ dễ đọc -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Thư viện Tailwind CSS để tạo giao diện nhanh và đẹp -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7F9FA;
+            color: #1F2937;
+        }
+
+        .primary-color {
+            background-color: #036c73;
+        }
+
+        .text-primary-color {
+            color: #036c73;
+        }
+
+        .primary-button {
+            background-color: #036c73;
+            color: #ffffff;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(3, 108, 115, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        
+        .primary-button:hover {
+            background-color: #0a8087;
+        }
+
+        .secondary-button {
+            border: 2px solid #036c73;
+            color: #036c73;
+            background-color: white;
+            border-radius: 12px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .secondary-button:hover {
+            background-color: #036c73;
+            color: white;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+        }
+        
+        /* Đảm bảo thanh điều hướng ở dưới cùng trên mobile */
+        @media (max-width: 768px) {
+            .bottom-nav {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 50;
+                background-color: white;
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#F7F9FA]">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4 px-6 md:px-12 flex justify-between items-center fixed top-0 left-0 right-0 z-40">
+        <div class="flex items-center">
+            <span class="text-2xl font-bold text-primary-color">Việc Làm Nhanh</span>
+        </div>
+        <nav class="hidden md:flex space-x-8 text-gray-700 font-medium">
+            <a href="#" class="nav-link hover:text-primary-color transition" data-page="home">Trang chủ</a>
+            <a href="#" class="nav-link hover:text-primary-color transition" data-page="jobs">Việc làm</a>
+            <a href="#" class="nav-link hover:text-primary-color transition" data-page="courses">Khóa học</a>
+            <a href="#" class="nav-link hover:text-primary-color transition" data-page="resources">Tài nguyên</a>
+            <a href="#" class="nav-link hover:text-primary-color transition" data-page="information">Thông tin</a>
+            <a href="#" class="nav-link hover:text-primary-color transition" data-page="support">Hỗ trợ</a>
+        </nav>
+        <button class="hidden md:block secondary-button" data-page="profile">Đăng nhập</button>
+        <button class="block md:hidden text-gray-700">
+            <!-- Icon Menu cho mobile -->
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+    </header>
+
+    <!-- Main Content Container -->
+    <div id="content-container" class="pt-24 pb-20 md:pb-8">
+        <!-- Content will be injected here -->
+    </div>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <h3 class="text-xl font-bold mb-4">Việc Làm Nhanh</h3>
+                <p class="text-sm text-gray-400">Kết nối người lao động trung niên với công việc phù hợp và kỹ năng cần thiết để tái hòa nhập thị trường.</p>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Liên hệ</h4>
+                <ul class="text-sm text-gray-400 space-y-2">
+                    <li>Email: hotro@vieclamnhanh.vn</li>
+                    <li>Hotline: 1900 1976</li>
+                    <li>Địa chỉ: 279 Nguyễn Tri Phương, phường Diên Hồng, TP.HCM</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Hỗ trợ</h4>
+                <ul class="text-sm text-gray-400 space-y-2">
+                    <li><a href="#" class="nav-link hover:text-white transition" data-page="support">Câu hỏi thường gặp</a></li>
+                    <li><a href="#" class="hover:text-white transition">Chính sách bảo mật</a></li>
+                    <li><a href="#" class="hover:text-white transition">Điều khoản sử dụng</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold mb-4">Đối tác</h4>
+                <ul class="text-sm text-gray-400 space-y-2">
+                    <li>Trung tâm Việc làm HCM</li>
+                    <li>Học viện Kỹ năng số</li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
+            &copy; 2024 Việc Làm Nhanh. All rights reserved.
+        </div>
+    </footer>
+    
+    <!-- Bottom Nav for Mobile -->
+    <nav class="bottom-nav flex md:hidden justify-around items-center py-2 text-gray-600">
+        <a href="#" class="nav-link flex flex-col items-center" data-page="home">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+            <span class="text-xs mt-1">Trang chủ</span>
+        </a>
+        <a href="#" class="nav-link flex flex-col items-center" data-page="jobs">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm1 8a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"></path></svg>
+            <span class="text-xs mt-1">Việc làm</span>
+        </a>
+        <a href="#" class="nav-link flex flex-col items-center" data-page="courses">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-.293.293A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zm-4 8v2h8v-2a2 2 0 10-8 0z"></path></svg>
+            <span class="text-xs mt-1">Khóa học</span>
+        </a>
+        <a href="#" class="nav-link flex flex-col items-center" data-page="profile">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+            <span class="text-xs mt-1">Hồ sơ</span>
+        </a>
+        <a href="#" class="nav-link flex flex-col items-center" data-page="support">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7s-8-3.134-8-7 3.582-7 8-7 8 3.134 8 7zm-8 4a1 1 0 100-2 1 1 0 000 2zm-2.5-1a.5.5 0 00-.5.5v2.5a.5.5 0 00.5.5h5a.5.5 0 00.5-.5v-2.5a.5.5 0 00-.5-.5h-2.5zm0-2a.5.5 0 00-.5.5v.5a.5.5 0 00.5.5h2.5a.5.5 0 00.5-.5V10.5a.5.5 0 00-.5-.5h-2.5z" clip-rule="evenodd"></path></svg>
+            <span class="text-xs mt-1">Hỗ trợ</span>
+        </a>
+    </nav>
+
+    <script>
+        // Nội dung HTML cho các trang khác
+        const pageContents = {
+            'home': `
+                <!-- Hero Section -->
+                <section class="bg-white py-16 px-6 md:px-12 rounded-b-[40px] shadow-md mb-8">
+                    <div class="max-w-4xl mx-auto text-center">
+                        <h1 class="text-3xl md:text-5xl font-extrabold text-[#1F2937] leading-tight mb-4">Việc phù hợp – Kỹ năng đúng – Trở lại nhanh.</h1>
+                        <p class="text-lg md:text-xl text-[#667085] mb-8">Kết nối bạn với những cơ hội việc làm phù hợp và lộ trình nâng cao kỹ năng ngắn hạn.</p>
+                        <div class="flex flex-col md:flex-row gap-4 items-center">
+                            <div class="relative w-full">
+                                <input type="text" placeholder="Chức danh, kỹ năng hoặc địa điểm..." class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-primary-color transition-colors">
+                                <svg class="w-6 h-6 absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            </div>
+                            <button class="primary-button w-full md:w-auto md:min-w-[150px]" data-page="jobs">Tìm việc</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Popular Jobs Section -->
+                <section class="max-w-7xl mx-auto px-6 md:px-12 mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Việc làm phổ biến</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Chuyên viên Hành chính</h3>
+                            <p class="text-sm text-gray-500 mb-3">Công ty TNHH ABC</p>
+                            <div class="flex items-center text-gray-600 text-sm mb-2">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <span>TP. Hồ Chí Minh</span>
+                            </div>
+                            <span class="text-lg font-bold text-primary-color mt-auto">12 - 15 triệu/tháng</span>
+                            <button class="primary-button mt-4 w-full" data-page="jobs">Ứng tuyển</button>
+                        </div>
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Nhân viên Kế toán</h3>
+                            <p class="text-sm text-gray-500 mb-3">Công ty Cổ phần XYZ</p>
+                            <div class="flex items-center text-gray-600 text-sm mb-2">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <span>Hà Nội</span>
+                            </div>
+                            <span class="text-lg font-bold text-primary-color mt-auto">10 - 13 triệu/tháng</span>
+                            <button class="primary-button mt-4 w-full" data-page="jobs">Ứng tuyển</button>
+                        </div>
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Nhân viên Vận hành Kho</h3>
+                            <p class="text-sm text-gray-500 mb-3">Tập đoàn Logistics LMN</p>
+                            <div class="flex items-center text-gray-600 text-sm mb-2">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <span>Bình Dương</span>
+                            </div>
+                            <span class="text-lg font-bold text-primary-color mt-auto">8 - 10 triệu/tháng</span>
+                            <button class="primary-button mt-4 w-full" data-page="jobs">Ứng tuyển</button>
+                        </div>
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Trợ lý Giám đốc</h3>
+                            <p class="text-sm text-gray-500 mb-3">Công ty Đầu tư DEF</p>
+                            <div class="flex items-center text-gray-600 text-sm mb-2">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <span>TP. Hồ Chí Minh</span>
+                            </div>
+                            <span class="text-lg font-bold text-primary-color mt-auto">15 - 20 triệu/tháng</span>
+                            <button class="primary-button mt-4 w-full" data-page="jobs">Ứng tuyển</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Quick Courses Section -->
+                <section class="max-w-7xl mx-auto px-6 md:px-12 mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Khóa học kỹ năng</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Tin học văn phòng</h3>
+                            <p class="text-sm text-gray-500 mb-3">Microsoft Office cơ bản</p>
+                            <div class="flex items-center text-gray-600 text-sm mb-2">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v2h-2a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2v-2z" clip-rule="evenodd"></path></svg>
+                                <span>Thời lượng: 5 giờ</span>
+                            </div>
+                            <p class="text-sm text-gray-600 my-2">Mô tả khóa học: Khóa học này giúp bạn nắm vững các công cụ văn phòng cơ bản để làm việc hiệu quả.</p>
+                            <button class="secondary-button mt-4 w-full" data-page="courses">Học ngay</button>
+                        </div>
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Kỹ năng giao tiếp</h3>
+                            <p class="text-sm text-gray-500 mb-3">Tự tin phỏng vấn & đàm phán</p>
+                            <div class="flex items-center text-gray-600 text-sm mb-2">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v2h-2a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2v-2z" clip-rule="evenodd"></path></svg>
+                                <span>Thời lượng: 8 giờ</span>
+                            </div>
+                            <p class="text-sm text-gray-600 my-2">Mô tả khóa học: Học cách giao tiếp hiệu quả, gây ấn tượng trong phỏng vấn và đàm phán.</p>
+                            <button class="secondary-button mt-4 w-full" data-page="courses">Học ngay</button>
+                        </div>
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Chuyển đổi nghề</h3>
+                            <p class="text-sm text-gray-500 mb-3">Lộ trình từ A đến B</p>
+                            <div class="flex items-center text-gray-600 text-sm mb-2">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v2h-2a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2v-2z" clip-rule="evenodd"></path></svg>
+                                <span>Thời lượng: 12 giờ</span>
+                            </div>
+                            <p class="text-sm text-gray-600 my-2">Mô tả khóa học: Hướng dẫn chi tiết cách xác định lại mục tiêu nghề nghiệp và chuyển đổi thành công.</p>
+                            <button class="secondary-button mt-4 w-full" data-page="courses">Học ngay</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Success Stories Section -->
+                <section class="max-w-7xl mx-auto px-6 md:px-12 mb-12">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-6 text-gray-800">Câu chuyện thành công</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="card text-center p-6 flex flex-col items-center hover:shadow-lg transition-shadow">
+                            <!-- Image of a person smiling -->
+                            <img src="https://placehold.co/100x100/036c73/ffffff?text=Nguyễn+Văn+A" alt="Nguyen Van A" class="w-24 h-24 rounded-full object-cover mb-4">
+                            <p class="text-sm italic text-gray-600 mb-2">"Nhờ các khóa học ngắn và công việc gợi ý, tôi đã tìm được việc làm mới trong 1 tháng."</p>
+                            <p class="font-medium text-gray-800">Nguyễn Văn A, 42 tuổi</p>
+                            <p class="text-sm text-gray-500">Kế toán viên</p>
+                        </div>
+                        <div class="card text-center p-6 flex flex-col items-center hover:shadow-lg transition-shadow">
+                            <!-- Image of a person smiling -->
+                            <img src="https://placehold.co/100x100/036c73/ffffff?text=Lê+Thị+B" alt="Le Thi B" class="w-24 h-24 rounded-full object-cover mb-4">
+                            <p class="text-sm italic text-gray-600 mb-2">"Giao diện đơn giản, dễ dùng. Tôi đã làm quen và nộp hồ sơ chỉ trong vài phút."</p>
+                            <p class="font-medium text-gray-800">Lê Thị B, 38 tuổi</p>
+                            <p class="text-sm text-gray-500">Chuyên viên Nhân sự</p>
+                        </div>
+                        <div class="card text-center p-6 flex flex-col items-center hover:shadow-lg transition-shadow">
+                            <!-- Image of a person smiling -->
+                            <img src="https://placehold.co/100x100/036c73/ffffff?text=Trần+Thị+C" alt="Tran Thi C" class="w-24 h-24 rounded-full object-cover mb-4">
+                            <p class="text-sm italic text-gray-600 mb-2">"Các tài nguyên hỗ trợ rất hữu ích, giúp tôi viết lại CV chuyên nghiệp hơn."</p>
+                            <p class="font-medium text-gray-800">Trần Thị C, 40 tuổi</p>
+                            <p class="text-sm text-gray-500">Trợ lý Giám đốc</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="max-w-7xl mx-auto px-6 md:px-12 mb-12">
+                    <div class="primary-color text-white rounded-2xl p-8 text-center flex flex-col md:flex-row items-center justify-between">
+                        <div>
+                            <h2 class="text-2xl md:text-3xl font-bold mb-2">Sẵn sàng để trở lại?</h2>
+                            <p class="text-lg md:text-xl font-light">Tạo hồ sơ và tìm công việc mơ ước của bạn ngay hôm nay!</p>
+                        </div>
+                        <div class="flex flex-col md:flex-row gap-4 mt-6 md:mt-0">
+                            <button class="bg-white text-primary-color font-semibold px-8 py-3 rounded-xl transition-transform hover:scale-105" data-page="profile">Tạo hồ sơ trong 3 phút</button>
+                            <button class="bg-white bg-opacity-20 text-white font-semibold px-8 py-3 rounded-xl border border-white transition-colors hover:bg-opacity-30" data-page="support">Đăng ký tư vấn miễn phí</button>
+                        </div>
+                    </div>
+                </section>
+            `,
+            'jobs': `
+                <div class="max-w-7xl mx-auto px-6 md:px-12">
+                    <h1 class="text-4xl font-bold mb-8 text-primary-color">Việc Làm</h1>
+
+                    <!-- Job Filters Section -->
+                    <div class="card mb-8">
+                        <h2 class="text-xl font-semibold mb-4 text-gray-800">Bộ lọc tìm kiếm</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="flex flex-col">
+                                <label for="location" class="text-sm font-medium text-gray-700 mb-1">Địa điểm</label>
+                                <select id="location" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color">
+                                    <option>Tất cả</option>
+                                    <option>TP. Hồ Chí Minh</option>
+                                    <option>Hà Nội</option>
+                                    <option>Bình Dương</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col">
+                                <label for="salary" class="text-sm font-medium text-gray-700 mb-1">Mức lương</label>
+                                <select id="salary" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color">
+                                    <option>Tất cả</option>
+                                    <option>Dưới 10 triệu</option>
+                                    <option>10 - 15 triệu</option>
+                                    <option>Trên 15 triệu</option>
+                                </select>
+                            </div>
+                            <div class="flex flex-col">
+                                <label for="industry" class="text-sm font-medium text-gray-700 mb-1">Ngành nghề</label>
+                                <select id="industry" class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-color">
+                                    <option>Tất cả</option>
+                                    <option>Hành chính/Nhân sự</option>
+                                    <option>Kế toán/Tài chính</option>
+                                    <option>Vận hành/Sản xuất</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Listings Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="card flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-xl text-gray-800 mb-1">Chuyên viên Hành chính</h3>
+                            <p class="text-sm text-gray-500 mb-3">Công ty TNHH ABC</p>
+                            <span class="text-lg font-bold text-primary-color">12 - 15 triệu/tháng</span>
+                            <p class="text-sm text-gray-600 my-2">Mô tả công việc: Quản lý hồ sơ, sắp xếp lịch họp, hỗ trợ các phòng ban.</p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <span>TP. Hồ Chí Minh</span>
+                            </div>
+                            <button class="primary-button mt-4 w-full">Ứng tuyển</button>
+                        </div>
+                        <div class="card flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-xl text-gray-800 mb-1">Nhân viên Kế toán</h3>
+                            <p class="text-sm text-gray-500 mb-3">Công ty Cổ phần XYZ</p>
+                            <span class="text-lg font-bold text-primary-color">10 - 13 triệu/tháng</span>
+                            <p class="text-sm text-gray-600 my-2">Mô tả công việc: Lập báo cáo tài chính, quản lý hóa đơn, đối chiếu công nợ.</p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <span>Hà Nội</span>
+                            </div>
+                            <button class="primary-button mt-4 w-full">Ứng tuyển</button>
+                        </div>
+                        <div class="card flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-xl text-gray-800 mb-1">Nhân viên Vận hành Kho</h3>
+                            <p class="text-sm text-gray-500 mb-3">Tập đoàn Logistics LMN</p>
+                            <span class="text-lg font-bold text-primary-color">8 - 10 triệu/tháng</span>
+                            <p class="text-sm text-gray-600 my-2">Mô tả công việc: Sắp xếp hàng hóa, kiểm kê kho, nhập xuất dữ liệu.</p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
+                                <span>Bình Dương</span>
+                            </div>
+                            <button class="primary-button mt-4 w-full">Ứng tuyển</button>
+                        </div>
+                    </div>
+                </div>
+            `,
+            'courses': `
+                <div class="max-w-7xl mx-auto px-6 md:px-12">
+                    <h1 class="text-4xl font-bold mb-8 text-primary-color">Khóa Học Kỹ Năng</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Tin học văn phòng</h3>
+                            <p class="text-sm text-gray-500 mb-3">Microsoft Office cơ bản</p>
+                            <div class="flex items-center text-gray-600 text-sm mb-2">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v2h-2a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2v-2z" clip-rule="evenodd"></path></svg>
+                                <span>Thời lượng: 5 giờ</span>
+                            </div>
+                            <p class="text-sm text-gray-600 my-2">Mô tả khóa học: Khóa học này giúp bạn nắm vững các công cụ văn phòng cơ bản để làm việc hiệu quả.</p>
+                            <button class="secondary-button mt-4 w-full">Học ngay</button>
+                        </div>
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Kỹ năng giao tiếp</h3>
+                            <p class="text-sm text-gray-500 mb-3">Tự tin phỏng vấn & đàm phán</p>
+                            <div class="flex items-center text-gray-600 text-sm mb-2">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v2h-2a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2v-2z" clip-rule="evenodd"></path></svg>
+                                <span>Thời lượng: 8 giờ</span>
+                            </div>
+                            <p class="text-sm text-gray-600 my-2">Mô tả khóa học: Học cách giao tiếp hiệu quả, gây ấn tượng trong phỏng vấn và đàm phán.</p>
+                            <button class="secondary-button mt-4 w-full" data-page="courses">Học ngay</button>
+                        </div>
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-1">Chuyển đổi nghề</h3>
+                            <p class="text-sm text-gray-500 mb-3">Lộ trình từ A đến B</p>
+                            <div class="flex items-center text-gray-600 text-sm mb-2">
+                                <svg class="w-4 h-4 mr-1 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v2h-2a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2v-2z" clip-rule="evenodd"></path></svg>
+                                <span>Thời lượng: 12 giờ</span>
+                            </div>
+                            <p class="text-sm text-gray-600 my-2">Mô tả khóa học: Hướng dẫn chi tiết cách xác định lại mục tiêu nghề nghiệp và chuyển đổi thành công.</p>
+                            <button class="secondary-button mt-4 w-full" data-page="courses">Học ngay</button>
+                        </div>
+                    </div>
+                </div>
+            `,
+            'resources': `
+                <div class="max-w-7xl mx-auto px-6 md:px-12">
+                    <h1 class="text-4xl font-bold mb-8 text-primary-color">Tài Nguyên Hữu Ích</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="card p-6 flex flex-col items-start">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">Mẫu CV Chuyên Nghiệp</h3>
+                            <p class="text-sm text-gray-600 mb-4">Tải về các mẫu CV được thiết kế riêng cho người có kinh nghiệm, giúp bạn tạo ấn tượng tốt nhất với nhà tuyển dụng.</p>
+                            <button class="primary-button">Tải về</button>
+                        </div>
+                        <div class="card p-6 flex flex-col items-start">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">Hướng Dẫn Viết Thư Ứng Tuyển</h3>
+                            <p class="text-sm text-gray-600 mb-4">Học cách viết một lá thư ứng tuyển hiệu quả, làm nổi bật kinh nghiệm và kỹ năng của bạn.</p>
+                            <button class="primary-button">Xem chi tiết</button>
+                        </div>
+                        <div class="card p-6 flex flex-col items-start">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">Bí Quyết Phỏng Vấn Thành Công</h3>
+                            <p class="text-sm text-gray-600 mb-4">Chuẩn bị cho buổi phỏng vấn một cách tốt nhất với các mẹo và câu hỏi phỏng vấn thường gặp.</p>
+                            <button class="primary-button">Xem chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            `,
+            'support': `
+                <div class="max-w-7xl mx-auto px-6 md:px-12">
+                    <h1 class="text-4xl font-bold mb-8 text-primary-color">Hỗ Trợ & Tư Vấn 1-1</h1>
+                    <div class="card p-8 mb-6">
+                        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Liên hệ với chúng tôi</h2>
+                        <p class="text-gray-700 mb-6">Chúng tôi luôn sẵn lòng hỗ trợ bạn. Bạn có thể liên hệ qua các kênh dưới đây hoặc đặt lịch tư vấn trực tiếp.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="flex flex-col items-center text-center">
+                                <div class="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mb-2">
+                                    <svg class="w-8 h-8 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.06-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.373 18 1.4 12.027 2 5.5V3z"></path></svg>
+                                </div>
+                                <h4 class="font-medium">Hotline</h4>
+                                <p class="text-sm text-gray-600">1900 1234</p>
+                            </div>
+                            <div class="flex flex-col items-center text-center">
+                                <div class="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mb-2">
+                                    <svg class="w-8 h-8 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                </div>
+                                <h4 class="font-medium">Email</h4>
+                                <p class="text-sm text-gray-600">contact@vieclamnhanh.vn</p>
+                            </div>
+                            <div class="flex flex-col items-center text-center">
+                                <div class="bg-gray-100 rounded-full w-16 h-16 flex items-center justify-center mb-2">
+                                    <svg class="w-8 h-8 text-primary-color" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a6 6 0 00-6 6v3.586l-.293.293A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zm-4 8v2h8v-2a2 2 0 10-8 0z"></path></svg>
+                                </div>
+                                <h4 class="font-medium">Zalo/Chat</h4>
+                                <p class="text-sm text-gray-600">Việc Làm Nhanh</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            'profile': `
+                <div class="max-w-7xl mx-auto px-6 md:px-12">
+                    <h1 class="text-4xl font-bold mb-8 text-primary-color">Tạo Hồ Sơ Của Bạn</h1>
+                    <div class="card p-8">
+                        <h2 class="text-2xl font-semibold mb-4 text-gray-800">Hoàn thành hồ sơ trong 3 bước</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <!-- Step 1: Thông tin cá nhân -->
+                            <div class="flex flex-col items-center text-center">
+                                <div class="bg-primary-color text-white rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-2">1</div>
+                                <h4 class="font-medium text-lg">Thông tin cá nhân</h4>
+                                <p class="text-sm text-gray-600">Cập nhật họ tên, số điện thoại, email và địa chỉ hiện tại.</p>
+                            </div>
+                            <!-- Step 2: Kinh nghiệm làm việc -->
+                            <div class="flex flex-col items-center text-center">
+                                <div class="bg-gray-200 text-gray-700 rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-2">2</div>
+                                <h4 class="font-medium text-lg">Kinh nghiệm & Kỹ năng</h4>
+                                <p class="text-sm text-gray-600">Thêm kinh nghiệm, vị trí, công ty và các kỹ năng bạn có.</p>
+                            </div>
+                            <!-- Step 3: Hoàn tất & Ứng tuyển -->
+                            <div class="flex flex-col items-center text-center">
+                                <div class="bg-gray-200 text-gray-700 rounded-full w-12 h-12 flex items-center justify-center text-xl font-bold mb-2">3</div>
+                                <h4 class="font-medium text-lg">Hoàn tất & Ứng tuyển</h4>
+                                <p class="text-sm text-gray-600">Xem lại hồ sơ và ứng tuyển vào các công việc phù hợp.</p>
+                            </div>
+                        </div>
+                        <div class="flex justify-center mt-8">
+                            <button class="primary-button">Bắt đầu tạo hồ sơ</button>
+                        </div>
+                    </div>
+                </div>
+            `,
+            'information': `
+                <div class="max-w-7xl mx-auto px-6 md:px-12">
+                    <h1 class="text-4xl font-bold mb-8 text-primary-color">Thông Tin & Tin Tức</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <img src="https://placehold.co/600x400/036c73/ffffff?text=Tin+tức+1" alt="Tin tức 1" class="w-full h-40 object-cover rounded-lg mb-4">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">5 kỹ năng cần thiết cho người trung niên khi chuyển việc</h3>
+                            <p class="text-sm text-gray-600 mb-4">Đọc bài viết này để khám phá 5 kỹ năng quan trọng giúp bạn dễ dàng thích nghi với công việc mới.</p>
+                            <button class="secondary-button mt-auto w-full">Đọc thêm</button>
+                        </div>
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <img src="https://placehold.co/600x400/036c73/ffffff?text=Tin+tức+2" alt="Tin tức 2" class="w-full h-40 object-cover rounded-lg mb-4">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">Thị trường lao động 2024: Cơ hội nào cho người trên 40 tuổi?</h3>
+                            <p class="text-sm text-gray-600 mb-4">Phân tích chuyên sâu về xu hướng thị trường, chỉ ra những ngành nghề tiềm năng cho người lao động có kinh nghiệm.</p>
+                            <button class="secondary-button mt-auto w-full">Đọc thêm</button>
+                        </div>
+                        <div class="card p-6 flex flex-col items-start hover:shadow-lg transition-shadow">
+                            <img src="https://placehold.co/600x400/036c73/ffffff?text=Tin+tức+3" alt="Tin tức 3" class="w-full h-40 object-cover rounded-lg mb-4">
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">Làm thế nào để viết CV "ghi điểm" trong 5 giây?</h3>
+                            <p class="text-sm text-gray-600 mb-4">Một bài viết hữu ích với các mẹo thực tế để tối ưu hóa CV của bạn, thu hút sự chú ý của nhà tuyển dụng.</p>
+                            <button class="secondary-button mt-auto w-full">Đọc thêm</button>
+                        </div>
+                    </div>
+                </div>
+            `
+        };
+
+        const contentContainer = document.getElementById('content-container');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const buttons = document.querySelectorAll('button[data-page]');
+
+        function loadPage(pageId) {
+            contentContainer.innerHTML = pageContents[pageId];
+
+            // Cập nhật trạng thái active cho thanh điều hướng desktop
+            const desktopNavLinks = document.querySelectorAll('nav.md\\:flex a.nav-link');
+            desktopNavLinks.forEach(link => {
+                if (link.dataset.page === pageId) {
+                    link.classList.add('text-primary-color');
+                } else {
+                    link.classList.remove('text-primary-color');
+                }
+            });
+
+            // Cập nhật trạng thái active cho thanh điều hướng mobile
+            const mobileNavLinks = document.querySelectorAll('.bottom-nav a.nav-link');
+            mobileNavLinks.forEach(link => {
+                link.classList.remove('text-primary-color');
+                link.classList.add('text-gray-600');
+                if (link.dataset.page === pageId) {
+                    link.classList.remove('text-gray-600');
+                    link.classList.add('text-primary-color');
+                }
+            });
+
+            // Thêm lại event listener cho các nút trong nội dung mới
+            const newButtons = contentContainer.querySelectorAll('button[data-page]');
+            newButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    loadPage(button.dataset.page);
+                });
+            });
+        }
+
+        // Gán sự kiện click cho tất cả các link và button
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                loadPage(link.dataset.page);
+            });
+        });
+
+        buttons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                loadPage(button.dataset.page);
+            });
+        });
+
+        // Mặc định tải trang chủ khi trang được nạp
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPage('home');
+        });
+    </script>
+</body>
+</html>
